@@ -4,7 +4,6 @@
 
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://python.org)
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-1.0%2B-orange)](https://scikit-learn.org)
-[![Tests](https://github.com/YOUR_USERNAME/SmartPolyRegression/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_USERNAME/SmartPolyRegression/actions)
 [![codecov](https://codecov.io/gh/YOUR_USERNAME/SmartPolyRegression/branch/main/graph/badge.svg)](https://codecov.io/gh/YOUR_USERNAME/SmartPolyRegression)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
