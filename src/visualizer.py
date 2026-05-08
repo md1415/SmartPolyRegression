@@ -1,12 +1,13 @@
 """Visualization module that saves plots without displaying."""
 
-import matplotlib
-
-matplotlib.use('Agg')  # Non-interactive backend
-import matplotlib.pyplot as plt
-import numpy as np
 import os
+import numpy as np
 from typing import Dict
+
+# Configure matplotlib backend before importing pyplot (required)
+import matplotlib
+matplotlib.use('Agg')  # noqa: E402
+import matplotlib.pyplot as plt  # noqa: E402
 
 
 class Visualizer:
@@ -16,7 +17,8 @@ class Visualizer:
         """Initialize visualizer with specific style."""
         try:
             plt.style.use(style)
-        except:
+        except Exception:
+            # Fallback to default style if requested style not available
             pass
 
     def plot_comparison(self, X_train: np.ndarray, y_train: np.ndarray,
@@ -48,11 +50,11 @@ class Visualizer:
                 label=f'Polynomial Degree {degree}', zorder=10)
 
         # Add error metrics text box
-        error_text = f"Error Metrics:\n"
+        error_text = "Error Metrics:\n"
         error_text += f"MSE: {error_metrics['mse']}\n"
         error_text += f"RMSE: {error_metrics['rmse']}\n"
         error_text += f"MAE: {error_metrics['mae']}\n"
-        error_text += f"R²: {error_metrics['r2']}"
+        error_text += f"R2: {error_metrics['r2']}"
 
         ax.text(0.05, 0.95, error_text, transform=ax.transAxes,
                 fontsize=10, verticalalignment='top',
@@ -61,8 +63,8 @@ class Visualizer:
         # Labels and title
         ax.set_xlabel('X', fontsize=12, fontweight='bold')
         ax.set_ylabel('y', fontsize=12, fontweight='bold')
-        ax.set_title(f'Smart Regression: Best Degree = {degree} (Auto-Selected)',
-                     fontsize=14, fontweight='bold')
+        title = f'Smart Regression: Best Degree = {degree} (Auto-Selected)'
+        ax.set_title(title, fontsize=14, fontweight='bold')
         ax.legend(loc='lower right', fontsize=10)
         ax.grid(True, alpha=0.3)
 
@@ -70,4 +72,4 @@ class Visualizer:
         plt.savefig(save_path, dpi=300, bbox_inches='tight')
         plt.close()
 
-        print(f"✅ Plot saved to {save_path}")
+        print(f"Plot saved to {save_path}")
